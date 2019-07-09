@@ -2,12 +2,15 @@ package com.parveendala.dagger.ui.login;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.RequestManager;
+import com.google.android.material.textfield.TextInputEditText;
 import com.parveendala.dagger.R;
 import com.parveendala.dagger.viewmodels.ViewModelProviderFactory;
 
@@ -34,10 +37,13 @@ public class LoginActivity extends DaggerAppCompatActivity {
 
     private LoginViewModel loginViewModel;
 
+    private TextInputEditText etUserId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        etUserId = findViewById(R.id.user_id);
         setLogo();
         loginViewModel = ViewModelProviders.of(this, viewModelProviderFactory).get(LoginViewModel.class);
     }
@@ -47,5 +53,10 @@ public class LoginActivity extends DaggerAppCompatActivity {
     }
 
     public void onButtonClicked(View view) {
+        if (!TextUtils.isEmpty(etUserId.getText().toString().trim())) {
+            loginViewModel.getUser(Integer.parseInt(etUserId.getText().toString().trim()));
+        } else {
+            Toast.makeText(this, "Please enter user id.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

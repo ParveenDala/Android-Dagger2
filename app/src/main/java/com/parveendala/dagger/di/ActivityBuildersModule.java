@@ -1,5 +1,6 @@
 package com.parveendala.dagger.di;
 
+import com.parveendala.dagger.di.login.LoginModule;
 import com.parveendala.dagger.di.login.LoginViewModelModule;
 import com.parveendala.dagger.ui.login.LoginActivity;
 
@@ -13,7 +14,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class ActivityBuildersModule {
 
-    @ContributesAndroidInjector(modules = {LoginViewModelModule.class})
+    @ContributesAndroidInjector(modules = {LoginViewModelModule.class, LoginModule.class})
     abstract LoginActivity loginActivity();
 
 }
