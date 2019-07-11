@@ -2,7 +2,9 @@ package com.parveendala.dagger.ui.main.post;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -47,6 +49,13 @@ public class PostFragment extends DaggerFragment {
     @Inject
     PostFragment() {
 
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: ");
+        return inflater.inflate(R.layout.fragment_post, container, false);
     }
 
     @Override
