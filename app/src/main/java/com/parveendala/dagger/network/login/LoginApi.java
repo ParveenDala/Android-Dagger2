@@ -14,8 +14,8 @@ import retrofit2.http.Path;
 public interface LoginApi {
 
     @GET("/users/{id}")
-    Flowable<User> getUserRx(@Path("id") int userId);
+    Call<User> getUser(@Path("id") int userId);
 
     @GET("/users/{id}")
-    Call<User> getUser(@Path("id") int userId);
+    Flowable<User> getUserRx(@Path("id") int userId);
 }
