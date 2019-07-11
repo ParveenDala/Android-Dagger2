@@ -74,6 +74,4 @@ public class AppModule {
     static Drawable provideAppLogo(Application application) {
         return ContextCompat.getDrawable(application, R.drawable.ic_android_black);
     }
-
-
 }

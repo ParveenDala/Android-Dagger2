@@ -17,15 +17,15 @@ import retrofit2.Retrofit;
 public class MainModule {
     private static final String TAG = "MainModule";
 
+    @MainScope
     @Provides
     static MainApi provideMainApi(Retrofit retrofit) {
-        Log.d(TAG, "provideMainApi: ");
         return retrofit.create(MainApi.class);
     }
 
+    @MainScope
     @Provides
     static PostRecyclerAdapter postRecyclerAdapter() {
-        Log.d(TAG, "postRecyclerAdapter: ");
         return new PostRecyclerAdapter();
     }
 

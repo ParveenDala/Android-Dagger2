@@ -2,7 +2,6 @@ package com.parveendala.dagger.ui.main.profile;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,12 +41,9 @@ public class ProfileFragment extends DaggerFragment {
 
     private void setUserDetails(User user) {
         if (user != null) {
-            Log.d(TAG, "setUserDetails: USER");
             tvName.setText(user.getName());
             tvEmail.setText(user.getEmail());
             tvWebsite.setText(user.getWebsite());
-        } else {
-            Log.d(TAG, "setUserDetails: USER == NULL");
         }
     }
 
@@ -63,12 +59,10 @@ public class ProfileFragment extends DaggerFragment {
                 if (resource != null) {
                     switch (resource.status) {
                         case AUTHENTICATED:
-                            Log.d(TAG, "onChanged: LOGIN SUCCESS - " + resource.data.getEmail());
                             setUserDetails(resource.data);
                             break;
                         case ERROR:
                             setErrorDetails(resource.message);
-                            Log.d(TAG, "onChanged: ERROR - " + resource.message);
                             break;
                     }
                 }
@@ -78,7 +72,6 @@ public class ProfileFragment extends DaggerFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: ");
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
@@ -88,14 +81,12 @@ public class ProfileFragment extends DaggerFragment {
         tvName = view.findViewById(R.id.name);
         tvEmail = view.findViewById(R.id.email);
         tvWebsite = view.findViewById(R.id.website);
-        Log.d(TAG, "onViewCreated: ");
         profileViewModel = ViewModelProviders.of(this, viewModelProviderFactory).get(ProfileViewModel.class);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "onActivityCreated: ");
         observeLoginUser();
     }
 }

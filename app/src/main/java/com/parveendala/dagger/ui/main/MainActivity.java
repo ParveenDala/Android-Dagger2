@@ -1,7 +1,6 @@
 package com.parveendala.dagger.ui.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -9,7 +8,6 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -20,7 +18,6 @@ import com.parveendala.dagger.BaseActivity;
 import com.parveendala.dagger.R;
 import com.parveendala.dagger.ui.main.post.PostFragment;
 import com.parveendala.dagger.ui.main.profile.ProfileFragment;
-import com.parveendala.dagger.viewmodels.ViewModelProviderFactory;
 
 import javax.inject.Inject;
 
@@ -30,11 +27,6 @@ import javax.inject.Inject;
  */
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "MainActivity";
-
-    @Inject
-    ViewModelProviderFactory viewModelProviderFactory;
-
-    MainViewModel mainViewModel;
 
     @Inject
     ProfileFragment profileFragment;
@@ -50,13 +42,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: ");
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         init();
-
-        mainViewModel = ViewModelProviders.of(this, viewModelProviderFactory).get(MainViewModel.class);
     }
 
     private void init() {

@@ -9,17 +9,19 @@ import androidx.lifecycle.Observer;
 import com.parveendala.dagger.models.User;
 import com.parveendala.dagger.ui.login.LoginResource;
 
+import javax.inject.Singleton;
+
 /**
  * Parveen Dala
  * Android-Dagger2
  */
+@Singleton
 public class SessionManager {
     private static final String TAG = "SessionManager";
     private MediatorLiveData<LoginResource<User>> cachedUser = new MediatorLiveData<>();
 
     public void authenticateUserById(final LiveData<LoginResource<User>> source) {
         if (cachedUser != null) {
-            Log.d(TAG, "SessionManager: cachedUser NOT NULL");
             cachedUser.setValue(LoginResource.loading((User) null));
             cachedUser.addSource(source, new Observer<LoginResource<User>>() {
                 @Override
@@ -28,8 +30,6 @@ public class SessionManager {
                     cachedUser.removeSource(source);
                 }
             });
-        } else {
-            Log.d(TAG, "SessionManager: cachedUser IS NULL");
         }
     }
 

@@ -45,10 +45,8 @@ public class LoginViewModel extends ViewModel {
                 User user = response.body();
                 if (user != null) {
                     Log.d(TAG, "onResponse: " + user.getEmail());
-                    Log.d(TAG, "onResponse: UPDATE DATA");
                     source.setValue(LoginResource.authenticated(user));
                 } else {
-                    Log.d(TAG, "onResponse: NULL");
                     source.setValue(LoginResource.error("Unable to login", (User) null));
                 }
             }
@@ -62,7 +60,6 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void authenticateUserUsingRxJava(int userId) {
-        Log.d(TAG, "authenticateUserUsingRxJava: 1");
         sessionManager.authenticateUserById(LiveDataReactiveStreams.fromPublisher(
                 loginApi.getUserRx(userId)
                         .onErrorReturn(new Function<Throwable, User>() {
@@ -83,7 +80,6 @@ public class LoginViewModel extends ViewModel {
                         })
                         .subscribeOn(Schedulers.io())
         ));
-        Log.d(TAG, "authenticateUserUsingRxJava: 2");
     }
 
     public LiveData<LoginResource<User>> observeLoginState() {

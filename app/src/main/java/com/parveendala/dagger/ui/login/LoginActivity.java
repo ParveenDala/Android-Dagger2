@@ -49,6 +49,7 @@ public class LoginActivity extends DaggerAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: ");
         setContentView(R.layout.activity_login);
         etUserId = findViewById(R.id.user_id);
         progressBar = findViewById(R.id.progress_bar);
