@@ -10,6 +10,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.parveendala.dagger.R;
+import com.parveendala.dagger.SessionManager;
 import com.parveendala.dagger.util.Constants;
 
 import javax.inject.Singleton;
@@ -26,6 +27,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 @Module
 public class AppModule {
+
+    @Singleton
+    @Provides
+    static SessionManager sessionManager() {
+        return new SessionManager();
+    }
 
     @Singleton
     @Provides

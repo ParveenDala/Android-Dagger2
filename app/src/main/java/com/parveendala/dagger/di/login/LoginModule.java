@@ -1,7 +1,5 @@
 package com.parveendala.dagger.di.login;
 
-import android.util.Log;
-
 import com.parveendala.dagger.network.login.LoginApi;
 
 import dagger.Module;
